@@ -1,58 +1,30 @@
-var Mapquestmap_front= {
+var frontPageIndex= {
 
 	/*display of front*/
 	display_front: function(){
 		var PLUGIN_NAME = $("#Mapquestmap_PLUGIN_NAME").val();
 		var PLUGIN_URL = $("#Mapquestmap_PLUGIN_URL").val();
 		
-		bMap = $("#PG_"+PLUGIN_NAME+"_staticmap").val();
+		bMap = $("#"+PLUGIN_NAME+"_staticmap").val();
 		
 		if(bMap == 1){
-			Mapquestmap_front.get_static_map();
+			frontPageIndex.get_static_map();
 		
 		}else{
 		
 			var aMapSetting = {
-				iLat: parseFloat($("#PG_"+PLUGIN_NAME+"_lat").val()),
-				iLng: parseFloat($("#PG_"+PLUGIN_NAME+"_lng").val()),
+				iLat: parseFloat($("#"+PLUGIN_NAME+"_lat").val()),
+				iLng: parseFloat($("#"+PLUGIN_NAME+"_lng").val()),
 				iZoom: 1
 			}
-				Mapquestmap_front.mapquest_init(aMapSetting);
+				frontPageIndex.mapquest_init(aMapSetting);
 			
 		}
 		
 	},
-	change_title_color: function(){
 	
-		var back_color = $("#Mapquestmap_background").val();
-		var title_color = Mapquestmap_front.oppositeColor(back_color);
-		
-		
-		$("#Mapquestmap_title").css("color", title_color);
-	
-	},
-	oppositeColor : function(color){
-		var origDigits = new Array("0","1","2","3","4","5","6","7","8","9","a","b","c","d","e","f"); 
-		var newDigits = new Array();
-		var newColor = "";
-		
-		$.each(origDigits, function(key, val){
-			newDigits[key] = val;
-		});
-		
-		newDigits.reverse()
-		color = color.replace("#", "");
-		aColor = color.split("")
-		
-		$.each(aColor, function(){
-			for (key in origDigits){
-				if (this == origDigits[key]) newColor += newDigits[key];
-			}
-		})
-		
-		return "#" + newColor;
-	},
 	mapquest_init: function(aMapSetting){
+		
 		var PLUGIN_NAME = $("#Mapquestmap_PLUGIN_NAME").val();
 		var PLUGIN_URL = $("#Mapquestmap_PLUGIN_URL").val();
 		
@@ -73,20 +45,22 @@ var Mapquestmap_front= {
 			window.map = new MQA.TileMap(options);
 			
 			/*set controllers*/
-			Mapquestmap_front.mapquest_screen_zoom("smallzoom");
-			Mapquestmap_front.mapquest_view_control();
-			Mapquestmap_front.mapquest_traffic();
-			Mapquestmap_front.mapquest_insetmapcontrol();
+			frontPageIndex.mapquest_screen_zoom("smallzoom");
+			frontPageIndex.mapquest_view_control();
+			frontPageIndex.mapquest_traffic();
+			frontPageIndex.mapquest_insetmapcontrol();
 			
 			
 			/*add locations*/
-			var aData = Mapquestmap_front.get_locations();
+			var aData = frontPageIndex.get_locations();
+			
 			var poi;
 			var sc;
 			$.each(aData, function(key, val){
+				
 				 function buildPoi(){
 				poi=new MQA.Poi({lat:val.lat, lng:val.lng});
-				var icon=new MQA.Icon(PLUGIN_URL+"images/balloon.png",25,30);
+				var icon=new MQA.Icon("/_sdk/img/mapquestmap/balloon.png",25,30);
 				poi.setIcon(icon);
 					poi.setInfoTitleHTML('<div style="width:120px;">'+val.loc+'</div>');
 					poi.setInfoContentHTML('<div style="width:120px;">Latlng: '+val.lat+','+val.lng+'</div>');
@@ -96,7 +70,7 @@ var Mapquestmap_front= {
 				function addPoi(){
 					window.map.addShape(buildPoi());
 					
-					var aData = Mapquestmap_front.get_locations();
+					var aData = frontPageIndex.get_locations();
 					var len = aData.length;
 					
 					if(len == 1){
@@ -126,15 +100,18 @@ var Mapquestmap_front= {
 		$('#Mapquestmap_static_map_holder').remove();
 		
 		
-		var width = $.trim($("#Mapquestmap_width").val());
-		var height = $.trim($("#Mapquestmap_height").val());
+		//var width = $.trim($("#Mapquestmap_width").val());
+		//var height = $.trim($("#Mapquestmap_height").val());
 		
-		var	size = ""+width+","+height;
+		var iMapWidth = $("#Mapquestmap_map").parent().width();
+		var iMapHeight = $("#Mapquestmap_map").parent().height();
+		
+		var	size = ""+iMapWidth+","+iMapHeight;
 		
 		var count = 1;
 		$('#Mapquestmap_map').hide();
 		
-		var aData = Mapquestmap_front.get_locations();
+		var aData = frontPageIndex.get_locations();
 		var len = aData.length;
 		
 		var iZoom = (len == 1) ? "&zoom="+3 : "";
@@ -178,6 +155,7 @@ var Mapquestmap_front= {
 	
 			location_str = strid.substr(1);
 			
+			
 			locations = location_str.split("+");
 			
 			$.each(locations, function(index){
@@ -186,8 +164,6 @@ var Mapquestmap_front= {
 				aLocation = locations[index].split("(");
 				aLocation['loc'] = aLocation[0];
 				aLocation['latlng'] = aLocation[1];
-				
-				
 				
 				aLatlng = aLocation['latlng'].split(",");
 				
@@ -271,16 +247,20 @@ var Mapquestmap_front= {
 	
 	/*close dialog box with popup class*/
 	close_popup: function(){
-	$(".popup").popUp("close");
+	//$(".popup").popUp("close");
 	}
 
 
 }
 
 $(document).ready(function(){
-	Mapquestmap_front.display_front();
-	Mapquestmap_front.change_title_color();
+	frontPageIndex.display_front();
+	
+	//get the size of parent div
+	var iMapWidth = $("#Mapquestmap_map").parent().width();
+	var iMapHeight = $("#Mapquestmap_map").parent().height();
+	
+	$("#Mapquestmap_map").css("width",iMapWidth);
+	$("#Mapquestmap_map").css("height",iMapHeight);
+	
 });
-
-
-

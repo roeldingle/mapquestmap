@@ -69,25 +69,20 @@
 		<col width="*" />
 	</colgroup>
 	
-	<tr>
-		<th><label for="map_title">Title</label></th>
-		<td>
-			<span>
-				<input maxlength ="250" type="text" name="<?php echo $PG_NAME;?>_map_title" id="<?php echo $PG_NAME;?>_map_title" value="<?php echo $aUserSetting['pmq_title'];?>" class="fix" fw-filter="isFill" />
-				<p>Max 250 Characters.</p>
-			</span>
-		</td>				
-	</tr>
 	
 	
-	<tr>
+	
+	<tr style="display:none;" >
 		<th class="padt2"><label for="show_html_value">Size</label></th>
 		<td class="padt2">
 			<select  class="rows" id="<?php echo $PG_NAME; ?>_mapsize" onchange="Mapquestmap_admin.change_mapsize();" >
+			<!--  
 				<option value="300,300" <?php if ($aMapsize[0] == "300"){echo "selected";}?> >Small (300 X 300)</option>
 				<option value="425,350" <?php if ($aMapsize[0] == "425"){echo "selected";}?>>Medium (425 X 350)</option>
 				<option value="640,480" <?php if ($aMapsize[0] == "640"){echo "selected";}?> >Large (640 X 480)</option>
 				<option value="custom" <?php if ($aMapsize[0] == "custom"){echo "selected";}?> >Custom</option>
+				-->
+				<option value="640,480" <?php if ($aMapsize[0] == "640"){echo "selected";}?> >Large (640 X 480)</option>
 			</select>
 			 
 			 <input type='button' id='Mapquestmap_preview' value='Preview'  class='btn' style='display:none;width:100px !important' onclick="Mapquestmap_admin.preview();" />

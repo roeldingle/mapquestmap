@@ -39,8 +39,8 @@ class adminPageSettings extends Controller_Admin
     	/*set default*/
     	if(empty($aUserSetting) || isset($aArgs['reset'])){
     		$aUserSetting = array(
-    				'pmq_title' => "Map title",
-    				'pmq_size' => "300,300",
+    				//'pmq_title' => "Map title",
+    				'pmq_size' => "640,480",
     				'pmq_static_map' => 0,
     				'pmq_locations' => "Los Angeles, CA, USA(34.0522342,-118.2436849)",
     				'pmq_border_width' => 0,

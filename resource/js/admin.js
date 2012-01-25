@@ -389,13 +389,14 @@ var Mapquestmap_admin= {
 	$("#"+PLUGIN_NAME+"_custom_container").empty();
 	var sCustomData = '';
 	sCustomData += '<table height="80px" class="custom_size"  ><tbody><tr><td width="20"><span class="neccesary">*</span><label for="module_label">Width</label></td>';
-	sCustomData += '<td ><input name="Mapquestmap_width" id="Mapquestmap_width"  class="fix2" type="text" size="2" maxlength="3" onkeyup="Mapquestmap_admin.set_size_custom();" value="'+cus_width+'" fw-filter="isFill&isNumber&isNumberMin[300]&isNumberMax[640]"  /></td>';
+	sCustomData += '<td ><input name="Mapquestmap_width" id="Mapquestmap_width"  class="fix2" type="text" size="2"  onkeyup="Mapquestmap_admin.set_size_custom();" value="'+cus_width+'" fw-filter="isFill&isNumber"  /></td>';
 	sCustomData += '</tr><tr><td width="20"><span class="neccesary">*</span><label for="module_label">Height</label>&nbsp;</td><td>';
-	sCustomData += '<input id="Mapquestmap_height" name="Mapquestmap_height" class="fix2" type="text" size="2" maxlength="3" onkeyup="Mapquestmap_admin.set_size_custom();" value="'+cus_height+'" fw-filter="isFill&isNumber&isNumberMin[300]&isNumberMax[480]"  />';
+	sCustomData += '<input id="Mapquestmap_height" name="Mapquestmap_height" class="fix2" type="text" size="2"  onkeyup="Mapquestmap_admin.set_size_custom();" value="'+cus_height+'" fw-filter="isFill&isNumber"  />';
 	sCustomData += '</tr></tbody></table>';
 	
 	$("#"+PLUGIN_NAME+"_custom_container").append(sCustomData);
 	
+	//&isNumberMin[300]&isNumberMax[480]   &isNumberMin[300]&isNumberMax[640]
 	
 	},	
 	display_option: function(evt){
