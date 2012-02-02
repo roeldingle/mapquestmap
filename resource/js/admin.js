@@ -234,8 +234,8 @@ var Mapquestmap_admin= {
 					},
 					success: function(data){
 						
-						$("#Mapquestmap_searchresult").empty();
 						if (data['Data'].length > 0){
+							$("#Mapquestmap_searchresult").empty();
 								var string = "<ul>"
 								$.each(data['Data'], function(key, val){
 								string += '<li><span class="desc"><a href="javascript:Mapquestmap_admin.add_location(\'' + val['sAdd'] + '\','+val['sLat']+','+val['sLng']+')">' + val['sAdd'] + '</a></span></li>';
@@ -244,7 +244,7 @@ var Mapquestmap_admin= {
 								$("#Mapquestmap_searchresult").append(string);
 							}
 							else {
-								$("#Mapquestmap_searchresult").append("<p class='error_message'>No results found.<p>");
+								$("#Mapquestmap_searchresult").empty().append("<p class='error_message'>No results found.<p>");
 							}
 							 
 							
@@ -525,7 +525,6 @@ var Mapquest ={
 		
 		
 	}
-	//
 	
 	$('#Mapquestmap_container').append("<div id='Mapquestmap_map' style='"+style+"'></div>");
 	

@@ -1,9 +1,25 @@
 var frontPageIndex= {
-
+		
+		map: null,
+	
 	/*display of front*/
 	display_front: function(){
 		var PLUGIN_NAME = $("#Mapquestmap_PLUGIN_NAME").val();
 		var PLUGIN_URL = $("#Mapquestmap_PLUGIN_URL").val();
+		
+		//get the size of parent div
+		var iMapWidth = $("#Mapquestmap_map").parent().width();
+		var iMapHeight = $("#Mapquestmap_map").parent().height();
+		
+		/*set a minimum value if height is 0*/
+		var iMinheigth = 200;
+		
+		if(iMapHeight == 0){
+			iMapHeight = iMinheigth;
+		}
+		
+		$("#Mapquestmap_map").css("width",iMapWidth);
+		$("#Mapquestmap_map").css("height",iMapHeight);
 		
 		bMap = $("#"+PLUGIN_NAME+"_staticmap").val();
 		
@@ -28,7 +44,6 @@ var frontPageIndex= {
 		var PLUGIN_NAME = $("#Mapquestmap_PLUGIN_NAME").val();
 		var PLUGIN_URL = $("#Mapquestmap_PLUGIN_URL").val();
 		
-			MQA.EventUtil.observe(window, 'load', function() {
 		
 			/*Create an object for options*/
 			var options={ 
@@ -42,7 +57,9 @@ var frontPageIndex= {
 			};
 
 			/*Construct an instance of MQA.TileMap with the options object*/
-			window.map = new MQA.TileMap(options);
+			frontPageIndex.map = new MQA.TileMap(options);
+			
+			
 			
 			/*set controllers*/
 			frontPageIndex.mapquest_screen_zoom("smallzoom");
@@ -68,22 +85,22 @@ var frontPageIndex= {
 				}
 	
 				function addPoi(){
-					window.map.addShape(buildPoi());
+					frontPageIndex.map.addShape(buildPoi());
 					
 					var aData = frontPageIndex.get_locations();
 					var len = aData.length;
 					
 					if(len == 1){
-					window.map.setZoomLevel(5);
+						frontPageIndex.map.setZoomLevel(5);
 					}else{
-					window.map.bestFit();
+						frontPageIndex.map.bestFit();
 					}
 				}
 	  
 				function addShapeCollection(){
 					sc=new MQA.ShapeCollection();
 					sc.add(buildPoi());
-					window.map.addShapeCollection(sc);
+					frontPageIndex.map.addShapeCollection(sc);
 				}
 				
 				addPoi();
@@ -91,8 +108,8 @@ var frontPageIndex= {
 			});
 			/*end add locations*/
 
-		});
-	
+		
+			return frontPageIndex.map;
 	},
 	
 	get_static_map: function(){
@@ -129,7 +146,7 @@ var frontPageIndex= {
 			count++;
 			});
 			
-			$('#Mapquestmap_holder').append("<div id='Mapquestmap_static_map_holder'  >");
+			$('#Mapquestmap_map').parent().append("<div id='Mapquestmap_static_map_holder'  >");
 			$('#Mapquestmap_static_map_holder').append("<img src='"+static_map+"' />");
 			return;
 		
@@ -193,13 +210,13 @@ var frontPageIndex= {
         }
 	alert(buildPoi());
         function addPoi(){
-          window.map.addShape();
+        	frontPageIndex.map.addShape();
         }
 	  
         function addShapeCollection(){
           var sc=new MQA.ShapeCollection();
           sc.add(buildPoi());
-          window.map.addShapeCollection(sc);
+          frontPageIndex.map.addShapeCollection(sc);
         }
 		
 	},
@@ -225,7 +242,7 @@ var frontPageIndex= {
 			zoom:3,
 			mapType:"hyb",
 			minimized:false };
-			map.addControl(
+			frontPageIndex.map.addControl(
 			new MQA.InsetMapControl(options),
 			new MQA.MapCornerPlacement(MQA.MapCorner.BOTTOM_RIGHT)
 			);
@@ -233,13 +250,13 @@ var frontPageIndex= {
 	},
 	mapquest_view_control: function(){
 		MQA.withModule('viewoptions', function() {
-			map.addControl(
+			frontPageIndex.map.addControl(
 			new MQA.ViewOptions());
 		});
 	},
 	mapquest_traffic: function(){
 		MQA.withModule('traffictoggle', function() {
-			map.addControl(
+			frontPageIndex.map.addControl(
 			new MQA.TrafficToggle());
 		});
 	
@@ -253,14 +270,13 @@ var frontPageIndex= {
 
 }
 
-$(document).ready(function(){
+jQuery(document).ready(function($){
+	
+	
+	
+	
 	frontPageIndex.display_front();
 	
-	//get the size of parent div
-	var iMapWidth = $("#Mapquestmap_map").parent().width();
-	var iMapHeight = $("#Mapquestmap_map").parent().height();
-	
-	$("#Mapquestmap_map").css("width",iMapWidth);
-	$("#Mapquestmap_map").css("height",iMapHeight);
+
 	
 });

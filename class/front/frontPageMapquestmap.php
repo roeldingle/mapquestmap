@@ -99,8 +99,10 @@ class frontPageMapquestmap extends Controller_Front
     	
     	
     	$sData = '';
-    	$sData = '<div id="Mapquestmap_holder" style="height:100%;width:100%;"  >';
+    	//$sData = '<div id="Mapquestmap_holder" style="width:100%;height:100%;"  >';
     	$sData .='<div id="Mapquestmap_map" ></div>';
+    	
+    	
     	$sData .='<div id="'.$PG_NAME.'_container" style="display:none;" > ' ;
   
     	if(count($aLoc) != 0){
@@ -112,9 +114,10 @@ class frontPageMapquestmap extends Controller_Front
 		    	$counter++;
 	    	}
 	    }else{
-	    	$sData .='<input type="hidden"  name="'.$PG_NAME.'_location[]" id="'.$PG_NAME.'_location_"'.$counter.'" value="Manila, Philippines (14.5995124,120.9842195)" class="textbox" />';
+	    	$sData .='<input type="hidden"  name="'.$PG_NAME.'_location[]" id="'.$PG_NAME.'_location_"'.$counter.'" value="Los Angeles, CA, USA(34.0522342,-118.2436849)" class="textbox" />';
     	} 
     	
+    	//$sData .='</div>';
     	#<!--map hidden settings-->
     	$sData .='<input type="hidden" id="'.$PG_NAME.'_PLUGIN_NAME"  class="fix" value="'.$PG_NAME.'" />';
     	$sData .='<input type="hidden" id="'.$PG_NAME.'_PLUGIN_URL"  class="fix" value="'.usbuilder()->getUrl(__CLASS__).'" />';

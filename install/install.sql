@@ -5,4 +5,4 @@ CREATE TABLE IF NOT EXISTS `mapquestmap_setting` (
 				  `pmq_static_map` int(11) NOT NULL,
 				  `pmq_locations` text NOT NULL,
 				  PRIMARY KEY  (`pmq_idx`)
-				) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+				) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;

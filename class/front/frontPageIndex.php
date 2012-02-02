@@ -109,7 +109,7 @@ class frontPageIndex extends Controller_Front
 	    		$sData .='style="width:'.$iContainerWidth.'px; height:'.$iContainerHeight.'px; ">';
 	    	}
 		//style="width:'.$iMapWidth.'px; height:'.$iMapHeight.'px;"
-    	$sData .='<div id="'.$PG_NAME.'_map" style="width:'.$iMapWidth.'px; height:'.$iMapHeight.'px;" ></div>';
+    	$sData .='<div id="'.$PG_NAME.'_map" style="width:500px; height:500px;" ></div>';
     	$sData .='</div>';
     	$sData .='</div>';
     	$sData .='</div>';
