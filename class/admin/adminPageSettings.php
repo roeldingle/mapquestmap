@@ -37,7 +37,7 @@ class adminPageSettings extends Controller_Admin
     	$aUserSetting = $this->oGet->getRow(2,null);
     	
     	/*set default*/
-    	if(empty($aUserSetting) || isset($aArgs['reset'])){
+    	if(empty($aUserSetting) || isset($aArgs['Mapquestmap_reset'])){
     		$aUserSetting = array(
     				//'pmq_title' => "Map title",
     				'pmq_size' => "640,480",
@@ -51,6 +51,9 @@ class adminPageSettings extends Controller_Admin
     	}
 
     	$this->assign('aUserSetting',$aUserSetting);
+    	
+    	$sUrl = usbuilder()->getUrl('adminPageSettings');
+    	$this->assign("sUrl",$sUrl);
     	
     	/*for custom*/
     	$aMapsize = explode(",",$aUserSetting['pmq_size']);

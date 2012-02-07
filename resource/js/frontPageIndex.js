@@ -223,13 +223,13 @@ var frontPageIndex= {
 	mapquest_screen_zoom: function(type){
 		if(type == "smallzoom"){
 		MQA.withModule(type, function() {
-				map.addControl(
+			frontPageIndex.map.addControl(
 				new MQA.SmallZoom(),new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5)));
 			});
 		
 		}else{
 			MQA.withModule(type, function() {
-			map.addControl(
+				frontPageIndex.map.addControl(
 			 new MQA.SmallZoom(), new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5)));
 			});
 		

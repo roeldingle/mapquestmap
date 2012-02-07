@@ -439,8 +439,10 @@ var Mapquestmap_admin= {
 		}
 
 	},
+	/*reset to default*/
 	reset_default: function(){
-		window.location= usbuilder.getUrl("adminPageSettings")+"&reset=true";
+		
+		$("#Mapquestmap_form_reset").submit();
 		
 	},
 

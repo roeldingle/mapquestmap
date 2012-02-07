@@ -159,6 +159,11 @@
 	</form>
 	</div>
 	
+	<!--form for reset-->
+<form method="POST" action="<?php echo $sUrl;?>" name="<?php echo $PG_NAME;?>_form_reset" id="<?php echo $PG_NAME;?>_form_reset" ><input type="hidden" name="<?php echo $PG_NAME;?>_reset" value="true" /></form>
+
+	
+	
 	
 	
 </body>
