@@ -8,6 +8,7 @@ class frontPageMapquestmap extends Controller_Front
     {
 
     require_once('builder/builderInterface.php');
+	usbuilder()->init($this, $aArgs);
     
 
  	/*assign objects*/
