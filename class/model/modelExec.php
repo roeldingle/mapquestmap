@@ -48,10 +48,34 @@ class modelExec extends Model{
 		return $sWhere;
 	}
 	
-	public function deleteData($iTable){
+	public function processArrayDataUpdate($aData){
+		
+		$sData = '';
+		foreach($aData as $key=>$val){
+			$sData .= ",".$key.' = "'.$val.'"';
+		}
+		
+		$sData = substr($sData,1);
+		
+		return $sData;
+		
+	}
+	
+	public function updateData($iTable,$aData,$sWhere){
 		$this->init();
 		$sTable = $this->chooseTable($iTable);
-		$bDeleted = $this->query("DELETE FROM ".$sTable);
+		$aData = $this->processArrayDataUpdate($aData);
+		$sWhere = $this->setWhere($sWhere);
+		$bUpdated = $this->query("UPDATE ".$sTable." SET ". $aData." ".$sWhere);
+		$bResult = isset($bUpdated)?true:false;
+		return $bResult;
+	}
+	
+	public function deleteData($iTable,$sWhere){
+		$this->init();
+		$sTable = $this->chooseTable($iTable);
+		$sWhere = $this->setWhere($sWhere);
+		$bDeleted = $this->query("DELETE FROM ".$sTable." ".$sWhere);
 		$bResult = isset($bDeleted)?true:false;
 		return $bResult;
 	}
@@ -90,7 +114,7 @@ class modelExec extends Model{
 		return $sData = "(".substr($sField,0,(strlen($sField)-1)).") VALUES (".substr($sValue,0,(strlen($sValue)-1)).")";
 	}
 	
-
+	
 	
 		
 	

@@ -31,14 +31,20 @@ class adminPageSettings extends Controller_Admin
     	$this->externalJS($sMapQuest_url);
     	$this->importJS("admin");
     	$this->importCSS('setup');
-
+	
+    	/*sequence*/
+    	$iSeq = $aArgs['seq'];
+    	$this->assign('iSeq', $iSeq);
+    	
     	/*set the user setting*/
-    	$aUserSetting = $this->oGet->getRow(2,null);
+    	$aUserSetting = $this->oGet->getRow(2,"seq =".$iSeq);
+    	
+    	
     	
     	/*set default*/
     	if(empty($aUserSetting) || isset($aArgs['Mapquestmap_reset'])){
     		$aUserSetting = array(
-    				//'pmq_title' => "Map title",
+    				'seq' => $sSeq,
     				'pmq_size' => "640,480",
     				'pmq_static_map' => 0,
     				'pmq_locations' => "Los Angeles, CA, USA(34.0522342,-118.2436849)",
@@ -77,6 +83,7 @@ class adminPageSettings extends Controller_Admin
     			$coun++;
     		}
     	}
+    	
     	
     	$this->assign('aLoc', $aData['loc']);
     	$this->assign('aLatLng', $aData['latlng']);

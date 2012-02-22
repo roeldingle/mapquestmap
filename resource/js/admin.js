@@ -38,8 +38,11 @@ var Mapquestmap_admin= {
 		Mapquest.traffic();
 		Mapquest.insetmapcontrol();
 		
+		
+		
 		if(bMap == 1){
 			Mapquestmap_admin.get_static_map();
+			
 		}
 		if($("#Mapquestmap_bcustom").val() == 1){
 			
@@ -119,6 +122,7 @@ var Mapquestmap_admin= {
 	setting_submit: function(form){
 		var PLUGIN_NAME = $("#PLUGIN_NAME").val();
 		var PLUGIN_URL = $("#PLUGIN_URL").val();
+		var iSeq = $("#SEQ").val();
 		
 		Mapquestmap_admin.close_popup();
 		
@@ -156,6 +160,7 @@ var Mapquestmap_admin= {
 					dataType: 'json',
 					data: {
 					action: 'setting_submit',
+					get_seq: iSeq,
 					get_pmq_title: pmq_title,
 					get_pmq_size: pmq_size,
 					get_pmq_static_map: pmq_static_map,
@@ -186,7 +191,7 @@ var Mapquestmap_admin= {
 		var sLocation = '';
 		sLocation += '<div class="add_location" id="Mapquestmap_'+id+'" >';
 		sLocation += '<a href="#"><img src="/_sdk/img/mapquestmap/balloon.gif" class="balloon" /></a>&nbsp';
-		sLocation += '<input type="text" readonly name="Mapquestmap_location[]" id="Mapquestmap_location_'+id+'" value="'+locations+'('+lat+','+lng+')" class="textbox" />&nbsp';
+		sLocation += '<input type="text" readonly name="Mapquestmap_location[]" id="Mapquestmap_location_'+id+'" value="'+$.trim(locations)+'('+lat+','+lng+')" class="textbox" />&nbsp';
 		sLocation += '<a  href="javascript:Mapquestmap_admin.remove_location('+id+');"  ><img src="/_sdk/img/mapquestmap/close_btn.gif" class="close_btn" /></a>';
 		sLocation += '</div>';
 		
@@ -206,6 +211,7 @@ var Mapquestmap_admin= {
 	var PLUGIN_URL = $("#PLUGIN_URL").val();
 	var search = $.trim($("#Mapquestmap_searchtext").val());
 	$("#Mapquestmap_searchresult").empty();
+	
 	
 	if(oValidator.formName.getMessage('Mapquest_search_popup')=== false || search == ""){
 	

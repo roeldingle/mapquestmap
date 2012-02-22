@@ -34,6 +34,10 @@
 	<!--hidden input-->
 	<input type="hidden" id="PLUGIN_NAME" value="<?php echo $PG_NAME;?>" /><!--pluginname-->
 	<input type="hidden" id="PLUGIN_URL" value="<?php echo $PG_URL;?>" /><!--pluginurl-->
+	<input type="hidden" id="SEQ" value="<?php echo $iSeq;?>" /><!--pluginurl-->
+	
+	
+	
 	<input type="hidden" id="<?php echo $PG_NAME;?>_lat"  class="fix" value="<?php echo $iLat;?>" />
 	<input type="hidden" id="<?php echo $PG_NAME;?>_lng"  class="fix" value="<?php echo $iLng;?>" />
 	<input type="hidden" id="<?php echo $PG_NAME;?>_staticmap"  class="fix" value="<?php echo $aUserSetting['pmq_static_map'];?>" />
@@ -50,7 +54,7 @@
 			
 		
 	
-		<span><label>Plugin ID :</label> <?php echo $PG_NAME;?></span><br /><br />
+		<span><label>Plugin ID :</label> <?php echo $PG_NAME.$seq;?></span><br /><br />
 	
 	
 		
@@ -99,10 +103,10 @@
 	</tr>
 	
 	<tr>
-		<th><label for="module_label">Static Map</label></th>
+		<th><label for="module_label">Static Map<?php echo $aUserSetting['pmq_static_map'];?></label></th>
 		<td>
 			<span class="checkbox_options">
-				<input id="Mapquestmap_static_map" type="checkbox" <?php if ($aUserSetting.pmq_static_map == 1){echo"checked"; } ?> onclick="Mapquestmap_admin.get_static_map()" name="Mapquestmap_static_map">
+				<input id="Mapquestmap_static_map" type="checkbox" <?php if ($aUserSetting['pmq_static_map'] == 1){echo"checked"; } ?> onclick="Mapquestmap_admin.get_static_map()" name="Mapquestmap_static_map">
 				<label for="Mapquestmap_static_map">Generate Static Map</label>
 			</span>
 		</td>				
