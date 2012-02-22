@@ -3,12 +3,14 @@ class installSequenceDelete
 {
     function run($aArgs)
     {
-    	return true;
-/*         $bResult = common()->modelContents()->deleteContentsBySeq($aArgs['seq']);
-        if ($bResult !== false) {
-            return true;
-        } else {
-            return false;
-        } */
+    	
+    $dDeleted = common()->modelExec()->deleteContentsBySeq($aArgs['seq']);
+    	
+    	if ($dDeleted !== false) {
+    		return true;
+    	} else {
+    		return false;
+    	} 
+    	
     }
 }

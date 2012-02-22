@@ -115,6 +115,15 @@ class modelExec extends Model{
 	}
 	
 	
+	function deleteContentsBySeq($aSeq)
+	{
+		$sSeqs = implode(',', $aSeq);
+		$sQuery = "Delete from mapquestmap_settings where seq in($sSeqs)";
+		$mResult = $this->query($sQuery);
+		return $mResult;
+	}
+	
+	
 	
 		
 	
