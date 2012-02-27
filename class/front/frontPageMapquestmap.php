@@ -33,7 +33,7 @@ class frontPageMapquestmap extends Controller_Front
     	//$this->importCSS('front');
     	
     	/*set the user setting*/
-    	$aUserSetting = $this->oGet->getRow(2,null);
+    	$aUserSetting = $this->oGet->getRow(2,"seq =".$this->getSequence());
     	
     	/*set default*/
     	if(empty($aUserSetting)){
