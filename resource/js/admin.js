@@ -187,7 +187,7 @@ var Mapquestmap_admin= {
 	add_location: function(locations,lat,lng){
 		Mapquestmap_admin.close_popup();
 		var PLUGIN_URL = $("#PLUGIN_URL").val();
-		var id = $('#Mapquestmap_location_wrap').children("div").size() +1;
+		var id = $('#Mapquestmap_location_wrap').children("div").size();
 		var sLocation = '';
 		sLocation += '<div class="add_location" id="Mapquestmap_'+id+'" >';
 		sLocation += '<a href="#"><img src="/_sdk/img/mapquestmap/balloon.gif" class="balloon" /></a>&nbsp';
