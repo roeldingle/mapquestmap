@@ -91,7 +91,9 @@ class adminPageSettings extends Controller_Admin
     	$this->assign('iLat', $aData['latlng'][$iLen][0]);
     	$this->assign('iLng', $aData['latlng'][$iLen][1]);
 
-
+    	/*for the additional links in the settins page*/
+    	$this->assign("bExtensionView", ($aArgs['etype'] ? 1 : 0));
+    	
     	/*set the template*/
     	$this->view(__CLASS__);
 

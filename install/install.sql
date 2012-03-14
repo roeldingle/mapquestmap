@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS `mapquestmap_setting` (
+CREATE TABLE IF NOT EXISTS `mapquestmap_settings` (
 				  `pmq_idx` int(11) NOT NULL auto_increment,
 				  `seq` int(11) NOT NULL,
 				  `pmq_pm_idx` int(11) NOT NULL,

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <lang>
     
-        <var name="mapquestmap">Mapquestmap</var>
-    
+   <var name="mapquestmap">Mapquestmap</var>
+    <var name="menu_contents">Settings</var>
     <var name="lang">subject</var>
     <var name="name">Subject</var>
 </lang>
