@@ -242,8 +242,6 @@ class frontPageMapquestmap extends Controller_Front
 								
 							});
 							/*end add locations*/
-				
-						
 							return frontPageIndex.map;
 					},
 					
@@ -342,7 +340,7 @@ class frontPageMapquestmap extends Controller_Front
 				          poi.setInfoTitleHTML(loc)
 				          return poi;
 				        }
-					//alert(buildPoi());
+					
 				        function addPoi(){
 				        	frontPageIndex.map.addShape();
 				        }

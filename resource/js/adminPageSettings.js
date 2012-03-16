@@ -1,4 +1,8 @@
-var Mapquestmap_admin= {
+var adminPageSettings= {
+		
+	/*set global variables*/
+	APP_NAME: $("#PLUGIN_NAME").val(),
+		
 	map: null,
 	zoom: null,
 	sc: null,
@@ -21,10 +25,10 @@ var Mapquestmap_admin= {
 			
 			var style = "width:"+width+"px; height:"+height+"px;";
 			$('#Mapquestmap_map').attr("style",style);
-			Mapquestmap_admin.map.setSize(new MQA.Size(width,height));
+			adminPageSettings.map.setSize(new MQA.Size(width,height));
 			
-			Mapquestmap_admin.get_static_map();
-			Mapquestmap_admin.get_locations();
+			adminPageSettings.get_static_map();
+			adminPageSettings.get_locations();
 			
 		}
 		
@@ -41,17 +45,17 @@ var Mapquestmap_admin= {
 		
 		
 		if(bMap == 1){
-			Mapquestmap_admin.get_static_map();
+			adminPageSettings.get_static_map();
 			
 		}
 		if($("#Mapquestmap_bcustom").val() == 1){
 			
-			Mapquestmap_admin.change_mapsize();
+			adminPageSettings.change_mapsize();
 		}
 		
 		/*give locations*/
-		Mapquestmap_admin.map.removeAllShapes();
-		var aData = Mapquestmap_admin.get_locations();
+		adminPageSettings.map.removeAllShapes();
+		var aData = adminPageSettings.get_locations();
 		$.each(aData, function(key, val){
 			Mapquest.add_poi(val.loc,val.lat,val.lng);
 		
@@ -59,7 +63,7 @@ var Mapquestmap_admin= {
 	},
 	remove_location: function(id){
 	$(".err_div_loc").remove();
-		Mapquestmap_admin.close_popup();
+		adminPageSettings.close_popup();
 		var size = $('#Mapquestmap_location_wrap').children("div").size();
 		if(size <= 1){
 		$("#Mapquestmap_"+id).append("<span style='color:red;font-style:italic;' class='err_div_loc' >You must maintain at least one(1) location.</span>");
@@ -67,10 +71,10 @@ var Mapquestmap_admin= {
 		$("#Mapquestmap_"+id).remove();
 		}
 		$('#Mapquestmap_static_map').attr('checked', false);
-		Mapquestmap_admin.get_static_map();
+		adminPageSettings.get_static_map();
 		
-		Mapquestmap_admin.map.removeAllShapes();
-		var aData = Mapquestmap_admin.get_locations();
+		adminPageSettings.map.removeAllShapes();
+		var aData = adminPageSettings.get_locations();
 		$.each(aData, function(key, val){
 			Mapquest.add_poi(val.loc,val.lat,val.lng);
 		
@@ -124,7 +128,7 @@ var Mapquestmap_admin= {
 		var PLUGIN_URL = $("#PLUGIN_URL").val();
 		var iSeq = $("#SEQ").val();
 		
-		Mapquestmap_admin.close_popup();
+		adminPageSettings.close_popup();
 		
 		
 		
@@ -133,7 +137,7 @@ var Mapquestmap_admin= {
 		//if custom preview map in custom 
 		var sMapsize = $("#Mapquestmap_mapsize").val();
 		if(sMapsize == "custom"){
-			Mapquestmap_admin.preview();
+			adminPageSettings.preview();
 		}
 			
 			
@@ -171,11 +175,11 @@ var Mapquestmap_admin= {
 					
 					if(data.Data === true){
 						oValidator.generalPurpose.getMessage(true, "Saved successfully");
-						Mapquestmap_admin.close_popup();
+						adminPageSettings.close_popup();
 						scroll(0,0);
 						}else{
 							oValidator.generalPurpose.getMessage(false, "Failed");
-							Mapquestmap_admin.close_popup();
+							adminPageSettings.close_popup();
 							scroll(0,0);
 						}
 				
@@ -185,20 +189,20 @@ var Mapquestmap_admin= {
 		
 	},
 	add_location: function(locations,lat,lng){
-		Mapquestmap_admin.close_popup();
+		adminPageSettings.close_popup();
 		var PLUGIN_URL = $("#PLUGIN_URL").val();
 		var id = $('#Mapquestmap_location_wrap').children("div").size();
 		var sLocation = '';
 		sLocation += '<div class="add_location" id="Mapquestmap_'+id+'" >';
 		sLocation += '<a href="#"><img src="/_sdk/img/mapquestmap/balloon.gif" class="balloon" /></a>&nbsp';
 		sLocation += '<input type="text" readonly name="Mapquestmap_location[]" id="Mapquestmap_location_'+id+'" value="'+$.trim(locations)+'('+lat+','+lng+')" class="textbox" />&nbsp';
-		sLocation += '<a  href="javascript:Mapquestmap_admin.remove_location('+id+');"  ><img src="/_sdk/img/mapquestmap/close_btn.gif" class="close_btn" /></a>';
+		sLocation += '<a  href="javascript:adminPageSettings.remove_location('+id+');"  ><img src="/_sdk/img/mapquestmap/close_btn.gif" class="close_btn" /></a>';
 		sLocation += '</div>';
 		
 		$("#Mapquestmap_location_wrap").append(sLocation);
 		
 		$('#Mapquestmap_static_map').attr('checked', false);
-		Mapquestmap_admin.get_static_map();
+		adminPageSettings.get_static_map();
 		
 		Mapquest.add_poi(locations,lat,lng);
 	
@@ -244,7 +248,7 @@ var Mapquestmap_admin= {
 							$("#Mapquestmap_searchresult").empty();
 								var string = "<ul>"
 								$.each(data['Data'], function(key, val){
-								string += '<li><span class="desc"><a href="javascript:Mapquestmap_admin.add_location(\'' + val['sAdd'] + '\','+val['sLat']+','+val['sLng']+')">' + val['sAdd'] + '</a></span></li>';
+								string += '<li><span class="desc"><a href="javascript:adminPageSettings.add_location(\'' + val['sAdd'] + '\','+val['sLat']+','+val['sLng']+')">' + val['sAdd'] + '</a></span></li>';
 								});
 								string += '</ul>'
 								$("#Mapquestmap_searchresult").append(string);
@@ -262,7 +266,7 @@ var Mapquestmap_admin= {
 	
 	open_dialog: function(){
 		$(".err_div_loc").remove();
-		Mapquestmap_admin.close_popup();
+		adminPageSettings.close_popup();
 		$("#dialog_search").remove();
 		$("body").append("<div id='dialog_search' class='popup' style='display:none' ></div>");
 		
@@ -277,8 +281,8 @@ var Mapquestmap_admin= {
 			var sData ='';
 				sData +='<div class="Mapquestmap_searchcontent"><form id="Mapquest_search_popup"><label>Search:</label>&nbsp;<input id="Mapquestmap_searchtext"  type="text"  fw-filter="isFill" /></div>';
 				sData +='<div id="Mapquestmap_searchresult"></div></form><br />';
-				sData +='<center><input  type="button" class="btn_apply" value="Search" onclick="Mapquestmap_admin.set_search()"/> &nbsp';
-				sData +='<input  type="button" class="btn_apply" value="Close" onclick="Mapquestmap_admin.close_popup()"/></center>';
+				sData +='<center><input  type="button" class="btn_apply" value="Search" onclick="adminPageSettings.set_search()"/> &nbsp';
+				sData +='<input  type="button" class="btn_apply" value="Close" onclick="adminPageSettings.close_popup()"/></center>';
 				$("#dialog_search").append(sData);
 				
 	
@@ -306,7 +310,7 @@ var Mapquestmap_admin= {
 			var count = 1;
 			$('#Mapquestmap_map').hide();
 			
-			var aData = Mapquestmap_admin.get_locations();
+			var aData = adminPageSettings.get_locations();
 			var len = aData.length;
 			
 			var iZoom = (len == 1 || len == 0) ? "&zoom="+3 : "";
@@ -327,8 +331,8 @@ var Mapquestmap_admin= {
 				$('#Mapquestmap_static_map_holder').append("<img src='"+static_map+"' />");
 				return;
 			}
-			Mapquestmap_admin.map.removeControl(Mapquestmap_admin.traffic);
-			Mapquestmap_admin.map.removeControl(Mapquestmap_admin.view_control);
+			adminPageSettings.map.removeControl(adminPageSettings.traffic);
+			adminPageSettings.map.removeControl(adminPageSettings.view_control);
 			
 			Mapquest.view_control();
 			Mapquest.traffic();
@@ -359,15 +363,15 @@ var Mapquestmap_admin= {
 	},
 	change_mapsize: function(){
 		
-		Mapquestmap_admin.close_popup();
-		var style = Mapquestmap_admin.get_mapsize();
+		adminPageSettings.close_popup();
+		var style = adminPageSettings.get_mapsize();
 	
 		
 		$("#Mapquestmap_custom_container").empty();
 		$("#Mapquestmap_custom_container").hide();
 		$("#Mapquestmap_preview").hide();
 		if(style == "custom"){
-			Mapquestmap_admin.display_custom();
+			adminPageSettings.display_custom();
 			$("#Mapquestmap_preview").show();
 			
 		}else{
@@ -376,10 +380,10 @@ var Mapquestmap_admin= {
 		var size = $('#Mapquestmap_mapsize').val();
 		var ALatlng = new Array();
 		aLatlng = size.split(",");
-		Mapquestmap_admin.map.setSize(new MQA.Size(parseFloat(aLatlng[0]),parseFloat(aLatlng[1])));
+		adminPageSettings.map.setSize(new MQA.Size(parseFloat(aLatlng[0]),parseFloat(aLatlng[1])));
 		
-		Mapquestmap_admin.get_static_map();
-		Mapquestmap_admin.get_locations();
+		adminPageSettings.get_static_map();
+		adminPageSettings.get_locations();
 		
 		}
 		
@@ -395,9 +399,9 @@ var Mapquestmap_admin= {
 	$("#"+PLUGIN_NAME+"_custom_container").empty();
 	var sCustomData = '';
 	sCustomData += '<table height="80px" class="custom_size"  ><tbody><tr><td width="20"><span class="neccesary">*</span><label for="module_label">Width</label></td>';
-	sCustomData += '<td ><input name="Mapquestmap_width" id="Mapquestmap_width"  class="fix2" type="text" size="2"  onkeyup="Mapquestmap_admin.set_size_custom();" value="'+cus_width+'" fw-filter="isFill&isNumber"  /></td>';
+	sCustomData += '<td ><input name="Mapquestmap_width" id="Mapquestmap_width"  class="fix2" type="text" size="2"  onkeyup="adminPageSettings.set_size_custom();" value="'+cus_width+'" fw-filter="isFill&isNumber"  /></td>';
 	sCustomData += '</tr><tr><td width="20"><span class="neccesary">*</span><label for="module_label">Height</label>&nbsp;</td><td>';
-	sCustomData += '<input id="Mapquestmap_height" name="Mapquestmap_height" class="fix2" type="text" size="2"  onkeyup="Mapquestmap_admin.set_size_custom();" value="'+cus_height+'" fw-filter="isFill&isNumber"  />';
+	sCustomData += '<input id="Mapquestmap_height" name="Mapquestmap_height" class="fix2" type="text" size="2"  onkeyup="adminPageSettings.set_size_custom();" value="'+cus_height+'" fw-filter="isFill&isNumber"  />';
 	sCustomData += '</tr></tbody></table>';
 	
 	$("#"+PLUGIN_NAME+"_custom_container").append(sCustomData);
@@ -448,7 +452,7 @@ var Mapquestmap_admin= {
 	/*reset to default*/
 	reset_default: function(){
 		
-		$("#Mapquestmap_form_reset").submit();
+		$("#"+adminPageSettings.APP_NAME+"_form_reset").submit();
 		
 	},
 
@@ -486,22 +490,22 @@ var Mapquest ={
 				}
 	
 				function addPoi(){
-					Mapquestmap_admin.map.addShape(buildPoi());
+					adminPageSettings.map.addShape(buildPoi());
 					
-					var aData = Mapquestmap_admin.get_locations();
+					var aData = adminPageSettings.get_locations();
 					var len = aData.length;
 					
 					if(len == 1){
-					Mapquestmap_admin.map.setZoomLevel(5);
+					adminPageSettings.map.setZoomLevel(5);
 					}else{
-					Mapquestmap_admin.map.bestFit();
+					adminPageSettings.map.bestFit();
 					}
 				}
 	  
 				function addShapeCollection(){
 					sc=new MQA.ShapeCollection();
 					sc.add(buildPoi());
-					Mapquestmap_admin.map.addShapeCollection(sc);
+					adminPageSettings.map.addShapeCollection(sc);
 				}
 				
 				addPoi();
@@ -524,7 +528,7 @@ var Mapquest ={
 			return options;
 	},
 	init: function(){
-	var style = Mapquestmap_admin.get_mapsize();
+	var style = adminPageSettings.get_mapsize();
 
 	if(style == "custom"){
 		var width = $("#Mapquestmap_custom_width").val();
@@ -539,14 +543,14 @@ var Mapquest ={
 	var PLUGIN_NAME = $("#PLUGIN_NAME").val();
 		var PLUGIN_URL = $("#PLUGIN_URL").val();
 			var options = Mapquest.option();
-			Mapquestmap_admin.map = new MQA.TileMap(options);
+			adminPageSettings.map = new MQA.TileMap(options);
 			
-			return Mapquestmap_admin.map;
+			return adminPageSettings.map;
 			
 	},
 	location: function(){
 	var PLUGIN_URL = $("#PLUGIN_URL").val();
-	var aData = Mapquestmap_admin.get_locations();
+	var aData = adminPageSettings.get_locations();
 	var p;
 	var icon;
 	$.each(aData, function(key, val){
@@ -561,8 +565,8 @@ var Mapquest ={
 				return p;
 			};
 			
-			Mapquestmap_admin.map.geocodeAndAddLocations({lat:val.lat,lng:val.lng}, function(){
-			Mapquestmap_admin.map.bestFit();});
+			adminPageSettings.map.geocodeAndAddLocations({lat:val.lat,lng:val.lng}, function(){
+			adminPageSettings.map.bestFit();});
 			
 		});
 	
@@ -571,21 +575,21 @@ var Mapquest ={
 	},
 	zoom: function(){
 		MQA.withModule("smallzoom", function() {
-				Mapquestmap_admin.map.addControl(
-				Mapquestmap_admin.zoom =  new MQA.SmallZoom(),new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5)));
+				adminPageSettings.map.addControl(
+				adminPageSettings.zoom =  new MQA.SmallZoom(),new MQA.MapCornerPlacement(MQA.MapCorner.TOP_LEFT, new MQA.Size(5,5)));
 			});
 			
 	},
 	view_control: function(){
 		MQA.withModule('viewoptions', function() {
-			Mapquestmap_admin.map.addControl(
-			Mapquestmap_admin.view_control = new MQA.ViewOptions());
+			adminPageSettings.map.addControl(
+			adminPageSettings.view_control = new MQA.ViewOptions());
 		});
 	},
 	traffic: function(){
 		MQA.withModule('traffictoggle', function() {
-			Mapquestmap_admin.map.addControl(
-			Mapquestmap_admin.traffic = new MQA.TrafficToggle());
+			adminPageSettings.map.addControl(
+			adminPageSettings.traffic = new MQA.TrafficToggle());
 		});
 	
 	},
@@ -596,7 +600,7 @@ var Mapquest ={
 			zoom:3,
 			mapType:"hyb",
 			minimized:false };
-			Mapquestmap_admin.map.addControl(
+			adminPageSettings.map.addControl(
 			new MQA.InsetMapControl(options),
 			new MQA.MapCornerPlacement(MQA.MapCorner.BOTTOM_RIGHT)
 			);
@@ -605,7 +609,7 @@ var Mapquest ={
 	
 }
 jQuery(document).ready(function($){
-	Mapquestmap_admin.display();
+	adminPageSettings.display();
 		$(document).keypress(function(e) {
 			if(e.keyCode == 13) {
 			return false;

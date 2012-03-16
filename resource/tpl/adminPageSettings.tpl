@@ -157,8 +157,8 @@
 	
 
 	<div class="tbl_lb_wide_btn">
-		<input type="button" value="Save" class="btn_apply" onclick="<?php echo $PG_NAME;?>_admin.setting_submit()" />
-		<a href="#" class="add_link" title="Reset to default" onclick="<?php echo $PG_NAME;?>_admin.reset_default()" >Reset to Default</a>
+		<input type="button" value="Save" class="btn_apply" onclick="adminPageSettings.setting_submit()" />
+		<a href="#" class="add_link" title="Reset to default" onclick="adminPageSettings.reset_default()" >Reset to Default</a>
 		<?php 
 			 if ($bExtensionView === 1){
 			            echo '<a href="/admin/sub/?module=ExtensionPageManage&code=' . ucfirst(APP_ID) . '&etype=MODULE" class="add_link" title="Return to Manage ' . ucfirst(APP_ID) . '">Return to Manage ' . ucfirst(APP_ID) . '</a>
@@ -170,7 +170,9 @@
 	</div>
 	
 	<!--form for reset-->
-<form method="POST" action="<?php echo $sUrl;?>" name="<?php echo $PG_NAME;?>_form_reset" id="<?php echo $PG_NAME;?>_form_reset" ><input type="hidden" name="<?php echo $PG_NAME;?>_reset" value="true" /></form>
+<form method="POST" action="" name="<?php echo $PG_NAME;?>_form_reset" id="<?php echo $PG_NAME;?>_form_reset" >
+<input type="hidden" name="<?php echo $PG_NAME;?>_reset" value="true" />
+</form>
 
 	
 	

@@ -29,7 +29,7 @@ class adminPageSettings extends Controller_Admin
 		/*Mapquest curl*/
     	$sMapQuest_url = 'http://www.mapquestapi.com/sdk/js/v7.0.s/mqa.toolkit.js?key=Fmjtd|luu2nuu1ll%2C8g%3Do5-h0tg0';
     	$this->externalJS($sMapQuest_url);
-    	$this->importJS("admin");
+    	$this->importJS(__CLASS__);
     	$this->importCSS('setup');
 	
     	/*sequence*/
