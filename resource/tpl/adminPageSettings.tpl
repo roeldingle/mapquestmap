@@ -79,7 +79,7 @@
 	<tr style="display:none;" >
 		<th class="padt2"><label for="show_html_value">Size</label></th>
 		<td class="padt2">
-			<select  class="rows" id="<?php echo $PG_NAME; ?>_mapsize" onchange="Mapquestmap_admin.change_mapsize();" >
+			<select  class="rows" id="<?php echo $PG_NAME; ?>_mapsize" onchange="adminPageSettings.change_mapsize();" >
 			<!--  
 				<option value="300,300" <?php if ($aMapsize[0] == "300"){echo "selected";}?> >Small (300 X 300)</option>
 				<option value="425,350" <?php if ($aMapsize[0] == "425"){echo "selected";}?>>Medium (425 X 350)</option>
@@ -89,7 +89,7 @@
 				<option value="640,480" <?php if ($aMapsize[0] == "640"){echo "selected";}?> >Large (640 X 480)</option>
 			</select>
 			 
-			 <input type='button' id='Mapquestmap_preview' value='Preview'  class='btn' style='display:none;width:100px !important' onclick="Mapquestmap_admin.preview();" />
+			 <input type='button' id='Mapquestmap_preview' value='Preview'  class='btn' style='display:none;width:100px !important' onclick="adminPageSettings.preview();" />
 			
 			<!-- Visible if Custom is selected -->
 			<input type="hidden" id="<?php echo $PG_NAME; ?>_bcustom" value="<?php echo $size = $aMapsize[0] == "custom"?"1":"0";?>" />
@@ -106,7 +106,7 @@
 		<th><label for="module_label">Static Map<?php echo $aUserSetting['pmq_static_map'];?></label></th>
 		<td>
 			<span class="checkbox_options">
-				<input id="Mapquestmap_static_map" type="checkbox" <?php if ($aUserSetting['pmq_static_map'] == 1){echo"checked"; } ?> onclick="Mapquestmap_admin.get_static_map()" name="Mapquestmap_static_map">
+				<input id="Mapquestmap_static_map" type="checkbox" <?php if ($aUserSetting['pmq_static_map'] == 1){echo"checked"; } ?> onclick="adminPageSettings.get_static_map()" name="Mapquestmap_static_map">
 				<label for="Mapquestmap_static_map">Generate Static Map</label>
 			</span>
 		</td>				
@@ -131,7 +131,7 @@
 					
 						<a href="#"><img src="/_sdk/img/mapquestmap/balloon.gif" class="balloon" /></a>
 						<input type="text"  value="<?php echo $val." (".$aLatLng[$counter][0].",".$aLatLng[$counter][1].")";?>" readonly name="Mapquestmap_location[]" id="Mapquestmap_location_" class="textbox" value="" />
-						<a  href="javascript:Mapquestmap_admin.remove_location(<?php echo $counter;?>);"  ><img src="/_sdk/img/mapquestmap/close_btn.gif" class="close_btn" /></a>
+						<a  href="javascript:adminPageSettings.remove_location(<?php echo $counter;?>);"  ><img src="/_sdk/img/mapquestmap/close_btn.gif" class="close_btn" /></a>
 						
 					</div>
 				<?php $counter++; }?>
@@ -147,7 +147,7 @@
 				<p>
 				<input type="hidden" id="<?php echo $PG_NAME;?>_lat"  class="fix" value="<?php echo $aUserSetting['pmq_lat'];?>" />
 				<input type="hidden" id="<?php echo $PG_NAME;?>_lng"  class="fix" value="<?php echo $aUserSetting['pmq_lng'];?>" />
-					<input type="button" class="btn" value="Add New Location" onclick="Mapquestmap_admin.open_dialog()" />
+					<input type="button" class="btn" value="Add New Location" onclick="adminPageSettings.open_dialog()" />
 				</p>
 				
 			</span>
