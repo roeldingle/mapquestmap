@@ -1,5 +1,5 @@
 <?php
-class frontPageMapquestmap extends Controller_Front
+class frontPageMapquestMap extends Controller_Front
 {
 
 	protected $oGet;
@@ -99,7 +99,6 @@ class frontPageMapquestmap extends Controller_Front
     	
     	
     	$sData = '';
-    	//$sData = '<div id="Mapquestmap_holder" style="width:100%;height:100%;"  >';
     	$sData .='<div class="Mapquestmap_map" style="width:100%;height:100%;" ></div>';
     	
     	
@@ -124,7 +123,7 @@ class frontPageMapquestmap extends Controller_Front
     	$sData .='<input type="hidden" class="'.$PG_NAME.'_width"   value="'.$iRealMapWidth.'" />';
     	$sData .='<input type="hidden" class="'.$PG_NAME.'_height"   value="'.$iRealMapHeight.'" />';
     	$sData .='</div>';
-    	$this->assign('Mapquestmap',$sData);
+    	$this->assign('display',$sData);
     	
     	$this->init_js($aArgs);
     	
@@ -141,6 +140,10 @@ class frontPageMapquestmap extends Controller_Front
 					display_front: function(){
 						var PLUGIN_NAME = $M(".Mapquestmap_PLUGIN_NAME").val();
 						var PLUGIN_URL = $M(".Mapquestmap_PLUGIN_URL").val();
+						
+						//give 100% size for the parent div
+						$M(".Mapquestmap_map").parent().css("width","100%");
+						$M(".Mapquestmap_map").parent().css("height","100%");
 						
 						//get the size of parent div
 						var iMapWidth = $M(".Mapquestmap_map").parent().width();
