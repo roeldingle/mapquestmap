@@ -54,8 +54,6 @@
 			
 		
 	
-		<span><label>App ID :</label> <?php echo $PG_NAME;?></span><br /><br />
-	
 	
 		
 	<div id="Mapquestmap_wrap">

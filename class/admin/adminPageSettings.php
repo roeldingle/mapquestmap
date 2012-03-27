@@ -12,8 +12,6 @@ class adminPageSettings extends Controller_Admin
 
  	/*assign objects*/
     $this->oGet = new modelGet;
-    
-
 	$this->display($aArgs);
 
     }
