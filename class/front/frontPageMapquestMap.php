@@ -215,7 +215,7 @@ class frontPageMapquestMap extends Controller_Front
 								
 								 function buildPoi(){
 								poi=new MQA.Poi({lat:val.lat, lng:val.lng});
-								var icon=new MQA.Icon("/_sdk/img/mapquestmap/balloon.png",25,30);
+								var icon=new MQA.Icon("[IMG]/balloon.png",25,30);
 								poi.setIcon(icon);
 									poi.setInfoTitleHTML("<div style=\'width:120px;\'>"+val.loc+"</div>");
 									poi.setInfoContentHTML("<div style=\'width:120px;\'>Latlng: "+val.lat+","+val.lng+"</div>");

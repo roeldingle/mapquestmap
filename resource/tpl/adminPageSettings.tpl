@@ -127,9 +127,9 @@
 				<?php $counter=0; foreach($aLoc as $val){?>
 					<div class="add_location" id="Mapquestmap_<?php echo $counter;?>" >
 					
-						<a href="#"><img src="/_sdk/img/mapquestmap/balloon.gif" class="balloon" /></a>
+						<a href="#"><img src="[IMG]/balloon.gif" class="balloon" /></a>
 						<input type="text"  value="<?php echo $val." (".$aLatLng[$counter][0].",".$aLatLng[$counter][1].")";?>" readonly name="Mapquestmap_location[]" id="Mapquestmap_location_" class="textbox" value="" />
-						<a  href="javascript:adminPageSettings.remove_location(<?php echo $counter;?>);"  ><img src="/_sdk/img/mapquestmap/close_btn.gif" class="close_btn" /></a>
+						<a  href="javascript:adminPageSettings.remove_location(<?php echo $counter;?>);"  ><img src="[IMG]/close_btn.gif" class="close_btn" /></a>
 						
 					</div>
 				<?php $counter++; }?>
